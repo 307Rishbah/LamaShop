@@ -35,4 +35,4 @@ const IsAdmin = (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken, Authorization, IsAdmin };
+module.exports = { Authorization, IsAdmin, verifyToken };
