@@ -1,14 +1,12 @@
-import {
-  Facebook,
-  Instagram,
-  MailOutline,
-  Phone,
-  Pinterest,
-  Room,
-  Twitter,
-} from "@material-ui/icons";
 import React from "react";
 import "./footer.css";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import PhoneIcon from "@mui/icons-material/Phone";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import RoomIcon from "@mui/icons-material/Room";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 const Footer = () => {
   return (
@@ -22,16 +20,16 @@ const Footer = () => {
         </p>
         <div className="footerSocial">
           <div className="socialIcon" style={{ color: "#3B5999" }}>
-            <Facebook />
+            <FacebookIcon />
           </div>
           <div className="socialIcon" style={{ color: "#E4405F" }}>
-            <Instagram />
+            <InstagramIcon />
           </div>
           <div className="socialIcon" style={{ color: "#55ACEE" }}>
-            <Twitter />
+            <TwitterIcon />
           </div>
           <div className="socialIcon" style={{ color: "#E60023" }}>
-            <Pinterest />
+            <PinterestIcon />
           </div>
         </div>
       </div>
@@ -52,15 +50,15 @@ const Footer = () => {
       <div className="rightFooter">
         <h3 className="footerRightTitle">Contact</h3>
         <div className="footerContactItem">
-          <Room style={{ marginRight: "10px" }} />
+          <RoomIcon style={{ marginRight: "10px" }} />
           622 Dixie Path, South Tobinchester 98336
         </div>
         <div className="footerContactItem">
-          <Phone style={{ marginRight: "10px" }} />
+          <PhoneIcon style={{ marginRight: "10px" }} />
           +1 234 567 89
         </div>
         <div className="footerContactItem">
-          <MailOutline style={{ marginRight: "10px" }} />
+          <MailOutlineIcon style={{ marginRight: "10px" }} />
           contact@lama.dev
         </div>
         <img

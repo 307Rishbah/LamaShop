@@ -1,20 +1,19 @@
+import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { publicRequest } from "../requestMethods";
+const base_url = "https://lama-shop-307rishbah.vercel.app/api/";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
   async ({ username, email, password }, { rejectWithValue }) => {
     try {
-      console.log("reg action succezs");
-      const res = await publicRequest.post("auth/register", {
+      const res = await axios.post(
+        `${base_url}auth/register`,
         username,
         email,
-        password,
-      });
+        password
+      );
       return res.data;
     } catch (error) {
-      console.log("reg action err", error);
-      // return custom error message from backend if present
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -28,18 +27,13 @@ export const loginUser = createAsyncThunk(
   "auth/login",
   async ({ username, password }, { rejectWithValue }) => {
     try {
-      console.log("login action succezs");
-      const { data } = await publicRequest.post("auth/login", {
+      const res = await axios.post(
+        `${base_url}/auth/login`,
         username,
-        password,
-      });
-      // store user's token in local storage
-      // localStorage.setItem("userToken", data.userToken);
-
-      return data;
+        password
+      );
+      return res.data;
     } catch (error) {
-      console.log("login action err", error);
-      // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {

@@ -1,8 +1,7 @@
+import axios from "axios";
 import "./products.css";
-
 import Product from "../product/Product";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);

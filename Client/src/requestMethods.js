@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api/";
+const BASE_URL = "https://lama-shop-307rishbah.vercel.app/api/";
 // const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).auth)
 //   .userInfo.accessToken;
 const TOKEN =

@@ -3,7 +3,6 @@ import "./cart.css";
 import NavBar from "../../components/navbar/NavBar";
 import Announcement from "../../components/announcement/Announcement";
 import Footer from "../../components/footer/Footer";
-import { Add, Remove } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
@@ -14,6 +13,9 @@ import {
   subProductQuantity,
   resetCart,
 } from "../../redux/cartSlice";
+
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -93,11 +95,11 @@ const Cart = () => {
                 </div>
                 <div className="cartPriceDetails">
                   <div className="productAmountContainer">
-                    <Remove
+                    <RemoveIcon
                       onClick={() => dispatch(subProductQuantity(product._id))}
                     />
                     <div className="productAmount">{product.quantity}</div>
-                    <Add
+                    <AddIcon
                       onClick={() => dispatch(addProductQuantity(product._id))}
                     />
                   </div>

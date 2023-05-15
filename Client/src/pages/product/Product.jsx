@@ -4,12 +4,14 @@ import NavBar from "../../components/navbar/NavBar";
 import Announcement from "../../components/announcement/Announcement";
 import NewsLetter from "../../components/newsletter/NewsLetter";
 import Footer from "../../components/footer/Footer";
-import { Add, Remove } from "@material-ui/icons";
+
 import { useLocation } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
 import axios from "axios";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 
 const Product = () => {
   const location = useLocation();
@@ -102,9 +104,9 @@ const Product = () => {
           </div>
           <div className="productAddContainer">
             <div className="productAmountContainer">
-              <Remove onClick={() => handleQuantity("sub")} />
+              <RemoveIcon onClick={() => handleQuantity("sub")} />
               <span className="productAmount">{quantity}</span>
-              <Add onClick={() => handleQuantity("add")} />
+              <AddIcon onClick={() => handleQuantity("add")} />
             </div>
             <button className="productCartButton" onClick={handleClick}>
               ADD TO CART

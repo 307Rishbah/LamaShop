@@ -1,5 +1,5 @@
-import React from "react";
 import "./navbar.css";
+import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
