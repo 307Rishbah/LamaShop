@@ -1,0 +1,64 @@
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+}
+.leftFooter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.footerdesc {
+  margin: 20px 0px;
+}
+.footerSocial {
+  display: flex;
+}
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 70%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.centerFooter {
+  flex: 1;
+  padding: 20px;
+}
+.footerCenterTitle {
+  margin-bottom: 30px;
+}
+.footerCenterList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.footerCenterListItem {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.rightFooter {
+  flex: 1;
+  padding: 20px;
+}
+.footerRightTitle {
+  margin-bottom: 30px;
+}
+.footerContactItem {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.footerPaymentImg {
+  width: 50%;
+  height: 20px;
+}
