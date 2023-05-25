@@ -53,7 +53,7 @@ const NavBar = () => {
           )}
           <Link to={"/cart"}>
             <div className="menuItem">
-              <Badge badgeContent={userInfo ? quantity : null} color="primary">
+              <Badge badgeContent={quantity} color="primary">
                 <ShoppingCartOutlinedIcon />
               </Badge>
             </div>
