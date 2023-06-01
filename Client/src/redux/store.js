@@ -6,8 +6,8 @@ import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
-  cart: cartSlice.reducer,
   auth: authSlice.reducer,
+  cart: cartSlice.reducer,
 });
 
 const persistConfig = {
@@ -19,7 +19,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-
   devTools: process.env.NODE_ENV !== "production",
   middleware: [thunk],
 });

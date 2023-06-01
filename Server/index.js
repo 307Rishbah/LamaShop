@@ -9,7 +9,7 @@ const userRoute = require("./routers/user");
 const productRoute = require("./routers/product");
 const cartRoute = require("./routers/cart");
 const orderRoute = require("./routers/order");
-const stripeRoute = require("./routers/stripe");
+const paymentRoute = require("./routers/payment");
 
 const cors = require("cors");
 
@@ -25,8 +25,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
+app.use("/api/checkout", paymentRoute);
 app.use("/api/orders", orderRoute);
-app.use("/api/checkout", stripeRoute);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

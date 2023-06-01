@@ -7,7 +7,6 @@ const { verifyToken, Authorization, IsAdmin } = require("./tokenVerify.js");
 
 router.post("/", verifyToken, async (req, res) => {
   const newOrder = new Order(req.body);
-
   try {
     const savedOrder = await newOrder.save();
     res.status(200).json(savedOrder);

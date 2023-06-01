@@ -1,50 +1,106 @@
-import React, { useEffect, useState } from "react";
 import "./cart.css";
 import NavBar from "../../components/navbar/NavBar";
 import Announcement from "../../components/announcement/Announcement";
 import Footer from "../../components/footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
-import { userRequest } from "../../requestMethods";
+
 import {
   removeProduct,
   addProductQuantity,
   subProductQuantity,
-  resetCart,
 } from "../../redux/cartSlice";
 
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-
-const KEY = process.env.REACT_APP_STRIPE;
+import axios from "axios";
 
 const Cart = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
 
-  const [stripeToken, setStripeToken] = useState(null);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const onToken = (token) => {
-    setStripeToken(token);
-  };
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
 
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const res = await userRequest.post("checkout/payment", {
-          tokenId: stripeToken.id,
-          amount: cart.total,
-        });
+  async function displayRazorpay() {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const result = await axios.post(
+      "http://localhost:8080/api/checkout/payment"
+    );
+
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    const { amount, id: order_id, currency } = result.data;
+
+    const options = {
+      key: "rzp_test_N9N2oegq4cg0HK", // Enter the Key ID generated from the Dashboard
+      amount: amount.toString(),
+      currency: currency,
+      name: "Rishabh Corp.",
+      description: "Test Transaction",
+      image: "",
+      order_id: order_id,
+      handler: async function (response) {
+        const data = {
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+        };
+
+        const res = await axios.post(
+          "http://localhost:8080/api/checkout/success",
+          data
+        );
+
         navigate("/success", {
-          stripeData: res.data,
-          products: cart,
+          state: {
+            razData: res.data,
+            cart: cart,
+          },
         });
-      } catch {}
+      },
+      prefill: {
+        name: "rishabh",
+        email: "rishabh@example.com",
+        contact: "1234567890",
+      },
+      notes: {
+        address: "Rishabh Corporate Office",
+      },
+      theme: {
+        color: "#61dafb",
+      },
     };
-    stripeToken && makeRequest();
-  }, [stripeToken, cart.total, cart, navigate]);
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  }
 
   return (
     <div className="cartContainer">
@@ -57,7 +113,6 @@ const Cart = () => {
           <button
             className="cartTopbutton"
             style={{ backgroundColor: "transparent" }}
-            onClick={() => dispatch(resetCart())}
           >
             CONTINUE SHOPPING
           </button>
@@ -142,18 +197,19 @@ const Cart = () => {
               <span className="summaryItemText">Total</span>
               <span className="summaryItemPrice">Rs. {cart.total}</span>
             </div>
-            <StripeCheckout
-              name="Lama Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
-              billingAddress
-              shippingAddress
-              description={`Your total is Rs.${cart.total}`}
-              amount={cart.total}
-              token={onToken}
-              stripeKey={KEY}
+
+            <button
+              className="productButton"
+              onClick={
+                userInfo
+                  ? displayRazorpay
+                  : () => {
+                      navigate("/login");
+                    }
+              }
             >
-              <button className="productButton">CHECK OUT</button>
-            </StripeCheckout>
+              CHECK OUT
+            </button>
           </div>
         </div>
       </div>

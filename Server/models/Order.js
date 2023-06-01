@@ -14,8 +14,10 @@ const OrderSchema = new mongoose.Schema(
         },
       },
     ],
+    orderId: { type: String, required: true },
+    paymentId: { type: String, required: true },
     amount: { type: Number, required: true },
-    address: { type: Object, required: true },
+    address: { type: Object, required: false },
     status: { type: String, default: "pending" },
   },
   { timestamps: true }
