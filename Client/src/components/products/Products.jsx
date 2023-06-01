@@ -12,8 +12,8 @@ const Products = ({ cat, filters, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:8080/api/products?category=${cat}`
-            : "http://localhost:8080/api/products"
+            ? `https://lama-shop.vercel.app/api/products?category=${cat}`
+            : "https://lama-shop.vercel.app/api/products"
         );
         setProducts(res.data);
       } catch {}
