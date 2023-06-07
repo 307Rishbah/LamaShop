@@ -27,7 +27,7 @@ const Product = () => {
     const getProduct = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/products/find/" + id
+          "https://lama-shop.vercel.app/api/products/find/" + id
         );
         setProduct(res.data);
       } catch (err) {}
