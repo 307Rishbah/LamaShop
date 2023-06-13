@@ -17,10 +17,11 @@ router.post("/payment", async (req, res) => {
       receipt: "receipt_order_74394",
     };
 
-    const order = await instance.orders.create(options);
+    //const order = await instance.orders.create(options);
 
-    if (!order) return res.status(500).send("Some error occured");
-
+    //if (!order) return res.status(500).send("Some error occured");
+    const order = "new";
+    console.log(order);
     res.json(order);
   } catch (error) {
     res.status(500).send(error);

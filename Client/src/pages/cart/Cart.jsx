@@ -15,6 +15,8 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import axios from "axios";
 
+const base_url = "https://lama-shop-307rishbah.vercel.app/api/";
+
 const Cart = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
@@ -46,9 +48,11 @@ const Cart = () => {
       return;
     }
 
-    const result = await axios.post(
-      "http://localhost:8080/api/checkout/payment"
-    );
+    console.log("hello 3");
+
+    const result = await axios.post(`${base_url}checkout/payment`);
+
+    console.log("hello 4");
 
     if (!result) {
       alert("Server error. Are you online?");
@@ -72,11 +76,11 @@ const Cart = () => {
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
         };
+        console.log("hello 5");
 
-        const res = await axios.post(
-          "http://localhost:8080/api/checkout/success",
-          data
-        );
+        const res = await axios.post(`${base_url}checkout/success`, data);
+
+        console.log("hello 6");
 
         navigate("/success", {
           state: {

@@ -33,7 +33,9 @@ const NavBar = () => {
           </div>
         </div>
         <div className="navbarCenter">
-          <h1>LAMA.</h1>
+          <Link to={"/"} style={{ textDecoration: "none", color: "black" }}>
+            <h1>LAMA.</h1>
+          </Link>
         </div>
         <div className="navbarRight">
           {!userInfo && (

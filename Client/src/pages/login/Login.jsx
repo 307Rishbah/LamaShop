@@ -13,7 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   //redirect authenticated user to homepage
-
   useEffect(() => {
     if (userInfo) {
       navigate("/");
