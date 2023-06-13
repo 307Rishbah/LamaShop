@@ -5,34 +5,34 @@ const crypto = require("crypto");
 const PaymentDetails = require("../models/PaymentDetail");
 
 router.post("/payment", async (req, res) => {
-  try {
-    console.log("hello 1");
-    const instance = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_SECRET,
-    });
+  console.log("hello 1");
+  const instance = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_SECRET,
+  });
 
-    console.log("hello 2");
+  console.log("hello 2");
 
-    const options = {
-      amount: 50000, // amount in smallest currency unit
-      currency: "INR",
-      receipt: "receipt_order_74394",
-    };
+  const options = {
+    amount: 50000, // amount in smallest currency unit
+    currency: "INR",
+    receipt: "receipt_order_74394",
+  };
 
-    console.log("hello 3");
+  console.log("hello 3");
 
-    const order = await instance.orders.create(options);
+  const order = await instance.orders.create(options);
 
-    console.log("hello 4");
+  console.log("hello 4");
 
-    if (!order) return res.status(500).send("Some error occured");
-    console.log("hello 6");
+  if (!order) return res.status(500).send("Some error occured");
+  console.log("hello 6");
 
-    res.json("order");
-  } catch (error) {
-    res.status(500).send(error);
-  }
+  res.json("order");
+  // try{
+  // } catch (error) {
+  //   res.status(500).send(error);
+  // }
 });
 
 router.post("/success", async (req, res) => {
