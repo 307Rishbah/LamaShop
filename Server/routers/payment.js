@@ -6,20 +6,22 @@ const PaymentDetails = require("../models/PaymentDetail");
 
 router.post("/payment", async (req, res) => {
   try {
-    const instance = new Razorpay({
-      key_id: rzp_test_N9N2oegq4cg0HK,
-      key_secret: PJtmCkUmIKskMIHUxCGKWzTn,
-    });
+    // const instance = new Razorpay({
+    //   key_id: rzp_test_N9N2oegq4cg0HK,
+    //   key_secret: PJtmCkUmIKskMIHUxCGKWzTn,
+    // });
 
-    const options = {
-      amount: 50000, // amount in smallest currency unit
-      currency: "INR",
-      receipt: "receipt_order_74394",
-    };
+    // const options = {
+    //   amount: 50000, // amount in smallest currency unit
+    //   currency: "INR",
+    //   receipt: "receipt_order_74394",
+    // };
 
-    const order = await instance.orders.create(options);
+    // const order = await instance.orders.create(options);
 
-    if (!order) return res.status(500).send("Some error occured");
+    // if (!order) return res.status(500).send("Some error occured");/
+    const order = "nelw";
+    console.log(order);
 
     res.json(order);
   } catch (error) {
