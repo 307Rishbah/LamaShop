@@ -11,19 +11,17 @@ router.post("/payment", async (req, res) => {
     //   key_secret: PJtmCkUmIKskMIHUxCGKWzTn,
     // });
 
-    // const options = {
-    //   amount: 50000, // amount in smallest currency unit
-    //   currency: "INR",
-    //   receipt: "receipt_order_74394",
-    // };
+    const options = {
+      amount: 50000, // amount in smallest currency unit
+      currency: "INR",
+      receipt: "receipt_order_74394",
+    };
 
     // const order = await instance.orders.create(options);
 
-    // if (!order) return res.status(500).send("Some error occured");/
-    const order = "nelw";
-    console.log(order);
+    // if (!order) return res.status(500).send("Some error occured");
 
-    res.json(order);
+    res.json("order");
   } catch (error) {
     res.status(500).send(error);
   }
