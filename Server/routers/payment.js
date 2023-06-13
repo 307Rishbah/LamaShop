@@ -7,8 +7,8 @@ const PaymentDetails = require("../models/PaymentDetail");
 router.post("/payment", async (req, res) => {
   try {
     const instance = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_SECRET,
+      key_id: rzp_test_N9N2oegq4cg0HK,
+      key_secret: PJtmCkUmIKskMIHUxCGKWzTn,
     });
 
     const options = {

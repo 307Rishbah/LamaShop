@@ -9,8 +9,7 @@ const cartRoute = require("./routers/cart");
 const orderRoute = require("./routers/order");
 const paymentRoute = require("./routers/payment");
 
-const dotenv = require("dotenv");
-dotenv.config();
+require("dotenv").config();
 
 mongoose
   .connect(process.env.MONGO_URL)
