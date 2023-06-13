@@ -102,11 +102,18 @@ const Cart = () => {
     paymentObject.open();
   }
 
+  const handleCheckOut = (event) => {
+    if (!userInfo) {
+      navigate("/login");
+    } else {
+      displayRazorpay();
+    }
+  };
+
   return (
     <div className="cartContainer">
       <NavBar />
       <Announcement />
-
       <div className="cartWrapperContainer">
         <h1 className="cart-Title">YOUR BAG</h1>
         <div className="cartTop">
@@ -198,16 +205,7 @@ const Cart = () => {
               <span className="summaryItemPrice">Rs. {cart.total}</span>
             </div>
 
-            <button
-              className="productButton"
-              onClick={
-                userInfo
-                  ? displayRazorpay
-                  : () => {
-                      navigate("/login");
-                    }
-              }
-            >
+            <button className="productButton" onClick={handleCheckOut}>
               CHECK OUT
             </button>
           </div>

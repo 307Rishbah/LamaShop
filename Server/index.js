@@ -2,14 +2,15 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-dotenv.config();
 const authRoute = require("./routers/auth");
 const userRoute = require("./routers/user");
 const productRoute = require("./routers/product");
 const cartRoute = require("./routers/cart");
 const orderRoute = require("./routers/order");
 const paymentRoute = require("./routers/payment");
+
+const dotenv = require("dotenv");
+dotenv.config();
 
 const cors = require("cors");
 
@@ -19,7 +20,7 @@ mongoose
   .catch((err) => console.log(err));
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "*",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
